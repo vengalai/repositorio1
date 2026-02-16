@@ -1,0 +1,7 @@
+{ "campers": {}, "trainers": 
+{ "1": {"nombre": "Edwin Salas", "horario": "6AM-2PM", "ruta": ["Java", "NetCore"]}, 
+"2": {"nombre": "Pedro", "horario": "6AM-6PM", "ruta": ["NodeJS", "Java"]}, 
+"3": {"nombre": "Jholver", "horario": "6AM-2PM", "ruta": ["Java", "NetCore"]}, 
+"4": {"nombre": "Cristian", "horario": "10AM-6PM", "ruta": ["Java", "NodeJS"]}, 
+"5": {"nombre": "Kevin David", "horario": "6AM-2PM", "ruta": ["Java"]} }, 
+"salones": { "Sputnik": {"capacidad": 35, "matriculados": 0}, "Artemis": {"capacidad": 35, "matriculados": 0}, "Apolo": {"capacidad": 35, "matriculados": 0} } }
