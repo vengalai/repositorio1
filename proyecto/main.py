@@ -4,10 +4,31 @@ def menu_principal():
     datos = funciones.cargar_datos() 
     
     while True:
+        print("\n===============================")
+        print("   SISTEMA DE GESTIÓN CAMPUS   ")
+        print("===============================")
+        print("1. Registro de Camper")
+        print("2. Registrar Nota (Próximamente)")
+        print("3. Gestión de Rutas (Asignación)")
+        print("0. Salir")
+        
         opcion = input("\nSeleccione una opción: ")
         
         if opcion == "1":
-            funciones.registrar_camper(datos) 
+            funciones.registrar_camper(datos)
+            
+        elif opcion == "2":
+            funciones.registrar_nota_inicial(datos) 
+            
+        elif opcion == "3":
+            funciones.asignar_ruta(datos)
+            
         elif opcion == "0":
             print("¡Hasta luego!")
-        break
+            break
+            
+        else:
+            print("\nOpción no válida, intenta de nuevo.")
+
+if __name__ == "__main__":
+    menu_principal()

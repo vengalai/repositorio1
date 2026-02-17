@@ -1,0 +1,12 @@
+{
+    "campers": {
+        "1097498613": {
+            "nombre": "Santiago Morantes",
+            "estado": "Reprobado",
+            "salon": null,
+            "ruta": null
+        }
+    },
+    "trainers": {},
+    "salones": {}
+}

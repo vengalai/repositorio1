@@ -1,4 +1,5 @@
 import json
+
 def cargar_datos():
     try:
         with open("campus.json", "r") as f:
@@ -17,8 +18,39 @@ def registrar_camper(datos):
     datos["campers"][id_camper] = {
         "nombre": nombre,
         "estado": "Inscrito",
-        "ruta": None,
-        "salon": None
+        "salon": None,
+        "ruta": None
     }
     guardar_datos(datos)
     print(f"¡Camper {nombre} registrado exitosamente!")
+
+def asignar_ruta(datos):
+    print("\n--- ASIGNACIÓN DE RUTA ---")
+    id_camper = input("Ingrese el ID del camper: ")
+    
+    if id_camper in datos["campers"]:
+        print(f"Buscando cupo para {datos['campers'][id_camper]['nombre']}...")
+    else:
+        print("Camper no encontrado.")
+def registrar_nota_inicial(datos):
+    print("\n--- REGISTRO DE PRUEBA DE INGRESO ---")
+    id_camper = input("Ingrese el ID del camper: ")
+
+    if id_camper in datos["campers"]:
+        try:
+            nota_teorica = float(input("Ingrese nota teórica (0-100): "))
+            nota_practica = float(input("Ingrese nota práctica (0-100): "))
+            promedio = (nota_teorica + nota_practica) / 2
+
+            if promedio >= 60:
+                datos["campers"][id_camper]["estado"] = "Aprobado"
+                print(f"¡Felicidades! Promedio: {promedio}. Estado: Aprobado.")
+            else:
+                datos["campers"][id_camper]["estado"] = "Reprobado"
+                print(f"Promedio insuficiente: {promedio}. Estado: Reprobado.")
+            
+            guardar_datos(datos)
+        except ValueError:
+            print("Error: Ingrese solo números para las notas.")
+    else:
+        print("El camper no existe en el sistema.")
