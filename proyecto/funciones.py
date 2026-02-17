@@ -25,8 +25,8 @@ def registrar_camper(datos):
     print(f"¡Camper {nombre} registrado exitosamente!")
 
 def asignar_ruta(datos):
-    print("\n--- ASIGNACIÓN DE RUTA ---")
-    id_camper = input("Ingrese el ID del camper: ")
+    print("\n--- ASIGNACIÓN DE SALONES Y RUTAS ---")
+    id_camper = input("Ingrese el ID del camper aprobado: ")
     
     if id_camper in datos["campers"]:
         print(f"Buscando cupo para {datos['campers'][id_camper]['nombre']}...")
