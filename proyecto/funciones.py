@@ -27,7 +27,7 @@ def registrar_camper(datos):
 
 def asignar_ruta(datos):
     print("\n--- ASIGNACIÓN DE SALONES Y RUTAS ---")
-    id_camper = input("Ingrese el ID del camper aprobado: ")
+    id_camper = input("Ingrese el ID del camper aprobado: ").strip()
     if id_camper not in datos["campers"]:
         print("Error: El camper no existe.")
         return
@@ -36,38 +36,36 @@ def asignar_ruta(datos):
     print(f"Error: El camper está en estado '{datos['campers'][id_camper]['estado']}'. Debe estar 'Aprobado' para matricular.")
     return
 
-print("\nSalones Disponibles (Capacidad máx: 35):")
+def asignar_ruta(datos):
+    print("\nSalones Disponibles (Capacidad máx: 35):")
 
-for nombre, info in datos["salones"].items():
-    print(f"- {nombre}: {info['matriculados']}/35 estudiantes.")
+    for nombre, info in datos["salones"].items():
+        print(f"- {nombre}: {info['matriculados']}/35 estudiantes.")
 
-disponibles = []
+    disponibles = []
+    for nombre, info in datos["salones"].items():
+        if info["matriculados"] < 35:
+            disponibles.append(nombre)
 
-for nombre, info in datos["salones"].items():
-    if info["matriculados"] < 35:
-        disponibles.append(nombre)
+    if not disponibles:
+        print("Lo sentimos, no hay cupos disponibles en ningún salón.")
+        return
 
-if not disponibles:
-    print("Lo sentimos, no hay cupos disponibles en ningún salón.")
-    return
+    seleccion = random.choice(disponibles)
+    print(f"El sistema ha asignado el salón: {seleccion}")
 
-seleccion = random.choice(disponibles)
-print(f"El sistema ha asignado el salón: {seleccion}")
-
-# Verificación segura
-if seleccion in datos["salones"]:
     datos["salones"][seleccion]["matriculados"] += 1
 
-rutas_posibles = ["Java", "NodeJS", "NetCore"]
-materia_asignada = random.choice(rutas_posibles)
+    rutas_posibles = ["Java", "NodeJS", "NetCore"]
+    materia_asignada = random.choice(rutas_posibles)
 
-datos["campers"][id_camper]["salon"] = seleccion
-datos["campers"][id_camper]["ruta"] = materia_asignada
-datos["campers"][id_camper]["estado"] = "Cursando"
+    datos["campers"][id_camper]["salon"] = seleccion
+    datos["campers"][id_camper]["ruta"] = materia_asignada
+    datos["campers"][id_camper]["estado"] = "Cursando"
 
-guardar_datos(datos)
+    guardar_datos(datos)
 
-print(f"¡Éxito! {datos['campers'][id_camper]['nombre']} asignado a {seleccion} (Ruta: {materia_asignada})")
+    print(f"¡Éxito! {datos['campers'][id_camper]['nombre']} asignado a {seleccion} (Ruta: {materia_asignada})")
 
 def listar_campers_por_salon(datos):
         busqueda = input("Ingrese el nombre del salón (Sputnik/Artemis/Apolo): ").capitalize()
