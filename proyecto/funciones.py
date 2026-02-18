@@ -31,38 +31,43 @@ def asignar_ruta(datos):
         print("Error: El camper no existe.")
         return
     
-    if datos["campers"][id_camper]["estado"] != "Aprobado":
-        print(f"Error: El camper está en estado '{datos['campers'][id_camper]['estado']}'. Debe estar 'Aprobado' para matricular.")
-        return
+    if datos:["campers"][id_camper]["estado"] != "Aprobado"
+    print(f"Error: El camper está en estado '{datos['campers'][id_camper]['estado']}'. Debe estar 'Aprobado' para matricular.")
+    return
+
     print("\nSalones Disponibles (Capacidad máx: 35):")
+
     for nombre, info in datos["salones"].items():
+
         print(f"- {nombre}: {info['matriculados']}/35 estudiantes.")
-    
-    seleccion = input("\nEscriba el nombre del salón (Sputnik/Artemis/Apolo): ").capitalize()
+
+    disponibles = []
+    for nombre, info in datos ["salones"].items():
+        if info["matriculados"] < 35:
+            disponibles.append(nombre)
+        
+        
+        if not disponibles:
+            print("Lo sentimos, no hay cupos disponibes en ningún salón.")
+            return
+
+    selecion = random.choice(disponibles)
+    print(f"El sistema ha asignado el salón: {seleccion}")
 
     if seleccion in datos["salones"]:
-        if datos["salones"][seleccion]["matriculados"] < 35:
-            rutas_asignadas = {
-                "Sputnik": "Java",
-                "Artemis": "NodeJS",
-                "Apolo": "NetCore"
-            }
-            
-            datos["campers"][id_camper]["salon"] = seleccion
-            datos["campers"][id_camper]["ruta"] = rutas_asignadas[seleccion]
-            datos["campers"][id_camper]["estado"] = "Cursando"
-            datos["salones"][seleccion]["matriculados"] += 1
-            
-            guardar_datos(datos)
-            print(f"¡Éxito! {datos['campers'][id_camper]['nombre']} ahora está en {seleccion} viendo {rutas_asignadas[seleccion]}.")
-        else:
-            print("El salón está lleno. Por favor elija otro.")
-    else:
-        print("Salón no válido.")
-    if id_camper in datos["campers"]:
-        print(f"Buscando cupo para {datos['campers'][id_camper]['nombre']}...")
-    else:
-        print("Camper no encontrado.")
+
+     datos["salones"][seleccion]["matriculados"] += 1
+     rutas_posibles = ["Java", "NodeJS", "NetCore"]
+
+     materia_asignada = random.choice(rutas_posibles)
+     
+     datos["campers"][id_camper]["salon"] = seleccion
+     datos["campers"][id_camper]["ruta"] = materia_asignada
+     datos["campers"][id_camper]["estado"] = "Cursando"
+
+    guardar_datos(datos)
+    print(f"¡Éxito! {datos['campers'][id_camper]['nombre']} asignado a {seleccion} (Ruta: {materia_asignada})")
+
 def registrar_nota_inicial(datos):
     print("\n--- REGISTRO DE PRUEBA DE INGRESO ---")
     id_camper = input("Ingrese el ID del camper: ")
