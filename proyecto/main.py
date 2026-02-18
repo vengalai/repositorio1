@@ -10,6 +10,7 @@ def menu_principal():
         print("1. Registro de Camper")
         print("2. Registrar Nota (Próximamente)")
         print("3. Gestión de Rutas (Asignación)")
+        print("4. Listar campers por salón")
         print("0. Salir")
         
         opcion = input("\nSeleccione una opción: ")
@@ -22,6 +23,9 @@ def menu_principal():
             
         elif opcion == "3":
             funciones.asignar_ruta(datos)
+        
+        elif opcion == "4":
+            funciones.listar_campers_por_salon(datos)
             
         elif opcion == "0":
             print("¡Hasta luego!")
